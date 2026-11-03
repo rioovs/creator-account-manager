@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Connecting… – Creator Account Manager</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <h1>Connecting your TikTok account…</h1>
+    <p id="status">Redirecting back to the app.</p>
+  </main>
+  <script>
+    // TikTok only accepts static https redirect URIs, so during local
+    // development this page forwards the OAuth result (code, state, scopes,
+    // or error) to the app running on localhost.
+    var LOCAL_CALLBACK = "http://localhost:3000/api/auth/tiktok/callback";
+    var params = window.location.search;
+    if (params) {
+      window.location.replace(LOCAL_CALLBACK + params);
+    } else {
+      document.getElementById("status").textContent =
+        "No authorization data received. Please start the connection again from the app.";
+    }
+  </script>
+</body>
+</html>
